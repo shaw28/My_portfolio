@@ -10,7 +10,7 @@ const experiences = [
     website: "https://www.accenture.com/",
     logo: process.env.PUBLIC_URL + "/logos/accenture.png",
     highlights: [
-      ,
+    
       "Designed UI components in Adobe XD and developed 40+ web UI pages using Angular.",
       "Used GitHub for version control, code reviews, and auditing workflows.",
       "Collaborated across design, QA, and testing teams to align product delivery.",
@@ -60,17 +60,20 @@ const Experience = () => {
                 <h3 className="text-2xl font-semibold text-gray-800">{exp.title}</h3>
                 <p className="text-blue-600 font-medium">{exp.company}</p>
                 <p className="text-sm text-gray-500">{exp.date} • {exp.location}</p>
-              </div>a
+              </div>
             </div>
-
+            
             <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>
-                Worked on <a href="https://www.hap.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">HAP</a> — a Michigan-based U.S. healthcare platform.
-              </li>
-              {exp.highlights.map((point, i) => (
-                <li key={i}>{point}</li>
-              ))}
-            </ul>
+  {exp.company === "Accenture" && (
+    <li>
+      Worked on <a href="https://www.hap.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">HAP</a> — a Michigan-based U.S. healthcare platform.
+    </li>
+  )}
+  {exp.highlights.map((point, i) => (
+    <li key={i}>{point}</li>
+  ))}
+</ul>
+
 
             <div className="flex flex-wrap gap-2 mt-4">
               {exp.skills.map((skill, i) => (
