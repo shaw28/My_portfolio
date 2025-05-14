@@ -7,81 +7,107 @@ const experiences = [
     company: "Accenture",
     date: "Aug 2022 – Sep 2023",
     location: "Chennai, India",
-    logo: "/logos/accenture.png",
     website: "https://www.accenture.com/",
-    logoBg: "bg-white",
-    tech: ["Angular", "AWS", "Jest", "CloudWatch"],
-    description: [
-      "Built 40+ Angular UI components for HAPS project (Michigan-based health platform).",
-      "Integrated REST APIs, optimized responsiveness, reduced load times by 20%.",
-      "Wrote Jest tests, deployed on AWS, monitored using CloudWatch."
-    ]
+    logo: process.env.PUBLIC_URL + "/logos/accenture.png",
+    highlights: [
+      ,
+      "Designed UI components in Adobe XD and developed 40+ web UI pages using Angular.",
+      "Used GitHub for version control, code reviews, and auditing workflows.",
+      "Collaborated across design, QA, and testing teams to align product delivery.",
+      "Tested APIs using Postman and wrote unit tests using Jest."
+    ],
+    skills: ["Angular", "Adobe XD", "GitHub", "Postman", "Jest", "Team Collaboration"]
   },
   {
     title: "Software Engineer Intern",
     company: "SYSOUT Solutions",
     date: "May 2021 – Jul 2022",
     location: "Chennai, India",
-    logo: "/logos/sysout.png",
     website: "https://sysoutsolutions.in/",
-    logoBg: "bg-black",
-    tech: ["Python", "SQL", "Bootstrap", "Postman"],
-    description: [
-      "Contributed to internal tools with Python and SQL backends.",
-      "Created REST APIs, worked with Bootstrap and Postman for UI and testing.",
-      "Participated in UAT testing, cloud deployment, and QA workflows."
-    ]
+    logo: process.env.PUBLIC_URL + "/logos/sysout.png",
+    highlights: [
+      "Built backend services using Python and SQL for internal tools.",
+      "Tested and validated REST APIs with Postman.",
+      "Observed and supported cloud monitoring and deployment workflows.",
+      "Collaborated with engineers and QA team on UAT and release cycles."
+    ],
+    skills: ["Python", "SQL", "Postman", "Cloud Deployment", "UAT", "Communication","Cloud solutions"]
   }
 ];
 
-function Experience() {
+const Experience = () => {
   return (
-    <section className="max-w-5xl mx-auto px-6 py-20">
-      <h2 className="text-4xl font-bold text-blue-700 mb-12 text-center">Professional Experience</h2>
-      <div className="relative border-l-4 border-blue-300 pl-6">
-        {experiences.map((exp, index) => (
+    <section className="max-w-6xl mx-auto px-6 py-20 text-gray-800">
+      <h2 className="text-4xl font-bold mb-12 text-blue-700 text-center">Professional Experience</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {experiences.map((exp, idx) => (
           <motion.div
-            key={index}
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
+            key={idx}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: idx * 0.2 }}
             viewport={{ once: true }}
-            className="mb-12 ml-4 relative"
+            className="bg-white p-6 rounded-xl shadow hover:shadow-xl border-t-4 border-blue-600"
           >
-            <div className="absolute -left-5 top-2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition">
-              <div className="flex items-center mb-3">
-                <a href={exp.website} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={exp.logo}
-                    alt={`${exp.company} logo`}
-                    className={`w-10 h-10 mr-4 object-contain ${exp.logoBg} rounded shadow hover:scale-105 transition-transform`}
-                  />
+            <div className="flex items-center mb-4">
+              <img
+                src={exp.logo}
+                alt={`${exp.company} logo`}
+                className="w-12 h-12 mr-4 object-contain bg-black rounded border"
+              />
+              <div>
+                <h3 className="text-2xl font-semibold text-gray-800">{exp.title}</h3>
+                <p className="text-blue-600 font-medium">{exp.company}</p>
+                <p className="text-sm text-gray-500">{exp.date} • {exp.location}</p>
+              </div>a
+            </div>
+
+            <ul className="list-disc list-inside text-gray-700 space-y-2">
+              <li>
+                Worked on <a href="https://www.hap.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">HAP</a> — a Michigan-based U.S. healthcare platform.
+              </li>
+              {exp.highlights.map((point, i) => (
+                <li key={i}>{point}</li>
+              ))}
+            </ul>
+
+            <div className="flex flex-wrap gap-2 mt-4">
+              {exp.skills.map((skill, i) => (
+                <span
+                  key={i}
+                  className="bg-blue-100 text-blue-800 px-3 py-1 text-sm rounded-full"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-4 space-x-4">
+              <a
+                href={exp.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-blue-600 hover:underline"
+              >
+                Visit Company Website ↗
+              </a>
+              {exp.title.includes("Accenture") && (
+                <a
+                  href="https://www.hap.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-600 hover:underline"
+                >
+                  View HAP Project ↗
                 </a>
-                <div>
-                  <h3 className="text-2xl font-semibold text-gray-800 mb-1">{exp.title}</h3>
-                  <span className="block text-blue-600 font-medium">{exp.company}</span>
-                  <span className="block text-sm text-gray-500">{exp.date} • {exp.location}</span>
-                </div>
-              </div>
-              <ul className="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                {exp.description.map((point, i) => (
-                  <li key={i}>{point}</li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-2 mt-4">
-                {exp.tech.map((tech, i) => (
-                  <span key={i} className="bg-blue-100 text-blue-800 px-3 py-1 text-sm rounded-full">
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              )}
             </div>
           </motion.div>
         ))}
       </div>
     </section>
   );
-}
+};
 
 export default Experience;
