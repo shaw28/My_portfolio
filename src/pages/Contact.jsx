@@ -104,7 +104,7 @@ const Contact = () => {
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.2 }}
-            href="https://www.instagram.com/kishore.shaw28"
+            href="https://www.instagram.com/s.h.a.w__"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-pink-500"
